@@ -33,8 +33,9 @@
             label3 = new Label();
             btnQuayLai = new Button();
             btnDangNhap = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtTaiKhoan = new TextBox();
+            txtMatKhau = new TextBox();
+            ckbHienMatKhau = new CheckBox();
             SuspendLayout();
             // 
             // label1
@@ -85,34 +86,47 @@
             btnDangNhap.UseVisualStyleBackColor = true;
             btnDangNhap.Click += btnDangNhap_Click;
             // 
-            // textBox1
+            // txtTaiKhoan
             // 
-            textBox1.Location = new Point(142, 69);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(147, 23);
-            textBox1.TabIndex = 5;
+            txtTaiKhoan.Location = new Point(142, 69);
+            txtTaiKhoan.Name = "txtTaiKhoan";
+            txtTaiKhoan.Size = new Size(147, 23);
+            txtTaiKhoan.TabIndex = 5;
             // 
-            // textBox2
+            // txtMatKhau
             // 
-            textBox2.Location = new Point(142, 113);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(147, 23);
-            textBox2.TabIndex = 6;
+            txtMatKhau.Location = new Point(142, 113);
+            txtMatKhau.Name = "txtMatKhau";
+            txtMatKhau.Size = new Size(147, 23);
+            txtMatKhau.TabIndex = 6;
+            txtMatKhau.UseSystemPasswordChar = true;
+            // 
+            // ckbHienMatKhau
+            // 
+            ckbHienMatKhau.AutoSize = true;
+            ckbHienMatKhau.Location = new Point(142, 142);
+            ckbHienMatKhau.Name = "ckbHienMatKhau";
+            ckbHienMatKhau.Size = new Size(104, 19);
+            ckbHienMatKhau.TabIndex = 7;
+            ckbHienMatKhau.Text = "Hiện mật khẩu";
+            ckbHienMatKhau.UseVisualStyleBackColor = true;
+            ckbHienMatKhau.CheckedChanged += ckbHienMatKhau_CheckedChanged;
             // 
             // formLoginAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(426, 212);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(ckbHienMatKhau);
+            Controls.Add(txtMatKhau);
+            Controls.Add(txtTaiKhoan);
             Controls.Add(btnDangNhap);
             Controls.Add(btnQuayLai);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "formLoginAdmin";
-            Text = "formLoginAdmin";
+            Text = "Đăng nhập Admin";
             Load += formLoginAdmin_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -125,7 +139,8 @@
         private Label label3;
         private Button btnQuayLai;
         private Button btnDangNhap;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtTaiKhoan;
+        private TextBox txtMatKhau;
+        private CheckBox ckbHienMatKhau;
     }
 }

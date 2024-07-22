@@ -1,4 +1,4 @@
-namespace QuanLyBanDoDienTuDanDung
+﻿namespace QuanLyBanDoDienTuDanDung
 {
     public partial class formWelcome : Form
     {
@@ -22,6 +22,20 @@ namespace QuanLyBanDoDienTuDanDung
             formChosseLogin loginForm = new formChosseLogin();
             loginForm.Show();
             this.Hide();
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult res;
+            res = MessageBox.Show("Bạn muốn thoát khỏi chương trình?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(res == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                this.Show();
+            }
         }
     }
 }

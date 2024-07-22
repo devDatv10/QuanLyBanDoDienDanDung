@@ -33,6 +33,7 @@
             label3 = new Label();
             label4 = new Label();
             btnBatDau = new Button();
+            btnThoat = new Button();
             SuspendLayout();
             // 
             // label1
@@ -87,11 +88,22 @@
             btnBatDau.UseVisualStyleBackColor = true;
             btnBatDau.Click += btnBatDau_Click;
             // 
+            // btnThoat
+            // 
+            btnThoat.Location = new Point(23, 271);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(75, 23);
+            btnThoat.TabIndex = 5;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // formWelcome
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(621, 306);
+            Controls.Add(btnThoat);
             Controls.Add(btnBatDau);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -112,5 +124,6 @@
         private Label label3;
         private Label label4;
         private Button btnBatDau;
+        private Button btnThoat;
     }
 }
