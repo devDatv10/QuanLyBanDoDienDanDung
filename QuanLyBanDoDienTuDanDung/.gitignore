@@ -1,0 +1,26 @@
+# Loại trừ các file tạm thời của Visual Studio, kết quả build và
+# các file được tạo bởi các add-on phổ biến của Visual Studio.
+
+# Các file dành cho người dùng
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Các file dành cho người dùng (local)
+.vs/
+
+# Các file tạm thời, file cache và các file khác không cần theo dõi
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Các thư mục build và debug
+bin/
+obj/
+
+# Các thư viện và dependencies
+packages/
