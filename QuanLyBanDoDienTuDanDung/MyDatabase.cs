@@ -21,7 +21,6 @@ namespace QuanLyBanDoDienTuDanDung
             try
             {
                 conn.Open();
-                // Thực hiện các thao tác với cơ sở dữ liệu
                 Console.WriteLine("Kết nối thành công!");
             }
             catch (Exception ex)
@@ -107,6 +106,41 @@ namespace QuanLyBanDoDienTuDanDung
             }
         }
 
+        public DataRow GetStaffInfo(string maNhanVien)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(@"
+            SELECT 
+                cn.Ten, 
+                cn.SoDienThoai, 
+                tk.PassWord,
+                nvbh.CaLamViec, 
+                nvbh.Luong 
+            FROM ConNguoi cn
+            INNER JOIN TaiKhoan tk ON cn.MaConNguoi = tk.MaConNguoi
+            INNER JOIN NhanVienBanHang nvbh ON cn.MaConNguoi = nvbh.MaNhanVien
+            WHERE cn.MaConNguoi = @MaConNguoi", conn);
+                cmd.Parameters.AddWithValue("@MaConNguoi", maNhanVien);
 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return dt.Rows[0];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return null;
+            }
+        }
     }
 }

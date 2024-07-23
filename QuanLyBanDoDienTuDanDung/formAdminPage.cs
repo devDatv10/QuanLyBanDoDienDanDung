@@ -26,7 +26,9 @@ namespace QuanLyBanDoDienTuDanDung
 
         private void btnChonQuanLyNhanVien_Click(object sender, EventArgs e)
         {
-
+            formManagerAccountStaff managerAccountStaffPage = new formManagerAccountStaff();
+            managerAccountStaffPage.Show();
+            this.Hide();
         }
 
         private void formAdminPage_Load(object sender, EventArgs e)

@@ -119,44 +119,60 @@ namespace QuanLyBanDoDienTuDanDung
         {
             if (string.IsNullOrWhiteSpace(txtMaQuanLy.Text))
             {
-                MessageBox.Show("Vui lòng nhập Mã quản lý để thực hiện 'Xóa'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập mã quản lý để thực hiện 'Xóa'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMaQuanLy.Focus();
                 return;
             }
 
-            try
+            DialogResult res;
+            res = MessageBox.Show("Bạn có chắc muốn xóa tài khoản quản lý cơ sở này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
             {
-                myDatabase.ConnectToDatabase();
+                try
+                {
+                    myDatabase.ConnectToDatabase();
 
-                SqlCommand cmd = new SqlCommand("XoaQuanLyCoSo", myDatabase.GetConnection());
-                cmd.CommandType = CommandType.StoredProcedure;
+                    DataRow currentManagerInfo = myDatabase.GetManagerInfo(txtMaQuanLy.Text);
+                    if (currentManagerInfo == null)
+                    {
+                        MessageBox.Show("Không tìm thấy tài khoản quản lý cơ sở với mã bạn cung cấp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
-                cmd.Parameters.AddWithValue("@MaQuanLy", txtMaQuanLy.Text);
+                    SqlCommand cmd = new SqlCommand("XoaQuanLyCoSo", myDatabase.GetConnection());
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@MaQuanLy", txtMaQuanLy.Text);
 
-                MessageBox.Show("Xóa tài khoản quản lý cơ sở thành công khỏi CSDL.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmd.ExecuteNonQuery();
 
-                LoadManagerAccounts();
+                    MessageBox.Show("Xóa tài khoản quản lý cơ sở thành công khỏi CSDL.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                txtMaQuanLy.Clear();
+                    LoadManagerAccounts();
+
+                    txtMaQuanLy.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+                finally
+                {
+                    myDatabase.CloseConnection();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
-            finally
-            {
-                myDatabase.CloseConnection();
+                this.Show();
             }
         }
-
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtMaQuanLy.Text))
             {
-                MessageBox.Show("Mã quản lý không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập mã quản lý để thực hiện 'Sửa'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMaQuanLy.Focus();
                 return;
             }
@@ -168,7 +184,8 @@ namespace QuanLyBanDoDienTuDanDung
                 DataRow currentManagerInfo = myDatabase.GetManagerInfo(txtMaQuanLy.Text);
                 if (currentManagerInfo == null)
                 {
-                    MessageBox.Show("Không tìm thấy quản lý cơ sở.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Không tìm thấy tài khoản quản lý cơ sở với mã bạn cung cấp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtMaQuanLy.Focus();
                     return;
                 }
 
@@ -178,7 +195,6 @@ namespace QuanLyBanDoDienTuDanDung
                 int caLamViec = string.IsNullOrWhiteSpace(txtCaLamViec.Text) ? (int)currentManagerInfo["CaLamViec"] : int.Parse(txtCaLamViec.Text);
                 int luong = string.IsNullOrWhiteSpace(txtLuong.Text) ? (int)currentManagerInfo["Luong"] : int.Parse(txtLuong.Text);
 
-                // Kiểm tra số điện thoại chỉ khi có thay đổi
                 if (!string.IsNullOrWhiteSpace(txtSoDienThoai.Text) && txtSoDienThoai.Text.Length != 10)
                 {
                     MessageBox.Show("Số điện thoại phải có 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -186,15 +202,13 @@ namespace QuanLyBanDoDienTuDanDung
                     return;
                 }
 
-                // Kiểm tra điều kiện lương
                 if (luong <= 0)
                 {
-                    MessageBox.Show("Lương phải là một số dương hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Lương phải là một số dương hợp lệ và lớn hơn 0.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtLuong.Focus();
                     return;
                 }
 
-                // Kiểm tra số điện thoại chỉ khi có thay đổi và khác với số hiện tại
                 if (!string.IsNullOrWhiteSpace(txtSoDienThoai.Text) && txtSoDienThoai.Text != currentManagerInfo["SoDienThoai"].ToString() && myDatabase.IsPhoneNumberExists(soDienThoai, txtMaQuanLy.Text))
                 {
                     MessageBox.Show("Số điện thoại đã tồn tại trong cơ sở dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -216,8 +230,14 @@ namespace QuanLyBanDoDienTuDanDung
 
                 MessageBox.Show("Cập nhật tài khoản quản lý cơ sở thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Reload lại danh sách
                 LoadManagerAccounts();
+
+                txtMaQuanLy.Clear();
+                txtTen.Clear();
+                txtSoDienThoai.Clear();
+                txtMaQuanLy.Clear();
+                txtSoDienThoai.Clear();
+                txtLuong.Clear();
             }
             catch (Exception ex)
             {
