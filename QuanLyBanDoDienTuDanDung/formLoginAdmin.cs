@@ -37,6 +37,13 @@ namespace QuanLyBanDoDienTuDanDung
                     return;
                 }
 
+                if (txtTaiKhoan.Text.Length != 10)
+                {
+                    MessageBox.Show("Số điện thoại phải có 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtTaiKhoan.Focus();
+                    return;
+                }
+
                 myDatabase.ConnectToDatabase();
 
                 String query = @"SELECT tk.*, cn.VaiTro 

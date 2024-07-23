@@ -84,6 +84,7 @@
             btnDangXuat.TabIndex = 4;
             btnDangXuat.Text = "Đăng xuất";
             btnDangXuat.UseVisualStyleBackColor = false;
+            btnDangXuat.Click += btnDangXuat_Click;
             // 
             // btnChonQuanLyCoSo
             // 
@@ -93,6 +94,7 @@
             btnChonQuanLyCoSo.TabIndex = 5;
             btnChonQuanLyCoSo.Text = "Chọn";
             btnChonQuanLyCoSo.UseVisualStyleBackColor = true;
+            btnChonQuanLyCoSo.Click += btnChonQuanLyCoSo_Click;
             // 
             // btnChonQuanLyNhanVien
             // 
@@ -102,6 +104,7 @@
             btnChonQuanLyNhanVien.TabIndex = 6;
             btnChonQuanLyNhanVien.Text = "Chọn";
             btnChonQuanLyNhanVien.UseVisualStyleBackColor = true;
+            btnChonQuanLyNhanVien.Click += btnChonQuanLyNhanVien_Click;
             // 
             // formAdminPage
             // 
@@ -118,6 +121,7 @@
             Controls.Add(label1);
             Name = "formAdminPage";
             Text = "Trang Admin";
+            Load += formAdminPage_Load;
             ResumeLayout(false);
             PerformLayout();
         }
