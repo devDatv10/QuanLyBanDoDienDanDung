@@ -55,7 +55,7 @@ namespace QuanLyBanDoDienTuDanDung
             {
                 if (string.IsNullOrWhiteSpace(txtTen.Text) || string.IsNullOrWhiteSpace(txtSoDienThoai.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text) || string.IsNullOrWhiteSpace(txtCaLamViec.Text))
                 {
-                    MessageBox.Show("Thông tin không được để trống. Vui lòng nhập đầy đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Thông tin nhân viên bán hàng không được để trống. Vui lòng nhập đầy đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtTen.Focus();
                     return;
                 }
@@ -193,6 +193,16 @@ namespace QuanLyBanDoDienTuDanDung
                 int caLamViec = string.IsNullOrWhiteSpace(txtCaLamViec.Text) ? (int)currentStaffInfo["CaLamViec"] : int.Parse(txtCaLamViec.Text);
                 int luong = string.IsNullOrWhiteSpace(txtLuong.Text) ? (int)currentStaffInfo["Luong"] : int.Parse(txtLuong.Text);
 
+                if (ten == currentStaffInfo["Ten"].ToString() &&
+                    soDienThoai == currentStaffInfo["SoDienThoai"].ToString() &&
+                    matKhau == currentStaffInfo["PassWord"].ToString() &&
+                    caLamViec == (int)currentStaffInfo["CaLamViec"]&&
+                    luong == (int)currentStaffInfo["Luong"])
+                {
+                    MessageBox.Show("Không có thay đổi nào để cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 if (!string.IsNullOrWhiteSpace(txtSoDienThoai.Text) && txtSoDienThoai.Text.Length != 10)
                 {
                     MessageBox.Show("Số điện thoại phải có 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -214,10 +224,10 @@ namespace QuanLyBanDoDienTuDanDung
                     return;
                 }
 
-                SqlCommand cmd = new SqlCommand("SuaQuanLyCoSo", myDatabase.GetConnection());
+                SqlCommand cmd = new SqlCommand("SuaNhanVienBanHang", myDatabase.GetConnection());
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@MaQuanLy", txtMaNhanVien.Text);
+                cmd.Parameters.AddWithValue("@MaNhanVien", txtMaNhanVien.Text);
                 cmd.Parameters.AddWithValue("@Ten", ten);
                 cmd.Parameters.AddWithValue("@SoDienThoai", soDienThoai);
                 cmd.Parameters.AddWithValue("@MatKhau", matKhau);
@@ -252,6 +262,11 @@ namespace QuanLyBanDoDienTuDanDung
             formAdminPage formAdminPage = new formAdminPage();
             formAdminPage.Show();
             this.Hide();
+        }
+
+        private void dtgvTaiKhoanNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

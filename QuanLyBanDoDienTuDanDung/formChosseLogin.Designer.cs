@@ -42,7 +42,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(156, 35);
+            label1.Location = new Point(152, 28);
             label1.Name = "label1";
             label1.Size = new Size(311, 28);
             label1.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             // btnDangNhapAdmin
             // 
-            btnDangNhapAdmin.Location = new Point(91, 163);
+            btnDangNhapAdmin.Location = new Point(83, 124);
             btnDangNhapAdmin.Name = "btnDangNhapAdmin";
             btnDangNhapAdmin.Size = new Size(75, 40);
             btnDangNhapAdmin.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // btnDangNhapQuanLyCoSo
             // 
-            btnDangNhapQuanLyCoSo.Location = new Point(251, 163);
+            btnDangNhapQuanLyCoSo.Location = new Point(244, 124);
             btnDangNhapQuanLyCoSo.Name = "btnDangNhapQuanLyCoSo";
             btnDangNhapQuanLyCoSo.Size = new Size(86, 40);
             btnDangNhapQuanLyCoSo.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             // btnDangNhapNhanVienBanHang
             // 
-            btnDangNhapNhanVienBanHang.Location = new Point(427, 163);
+            btnDangNhapNhanVienBanHang.Location = new Point(413, 124);
             btnDangNhapNhanVienBanHang.Name = "btnDangNhapNhanVienBanHang";
             btnDangNhapNhanVienBanHang.Size = new Size(90, 40);
             btnDangNhapNhanVienBanHang.TabIndex = 3;
@@ -81,7 +81,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(67, 230);
+            label2.Location = new Point(53, 200);
             label2.Name = "label2";
             label2.Size = new Size(123, 15);
             label2.TabIndex = 4;
@@ -90,7 +90,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(235, 230);
+            label3.Location = new Point(219, 200);
             label3.Name = "label3";
             label3.Size = new Size(128, 15);
             label3.TabIndex = 5;
@@ -99,7 +99,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(413, 230);
+            label4.Location = new Point(388, 200);
             label4.Name = "label4";
             label4.Size = new Size(139, 15);
             label4.TabIndex = 6;
@@ -107,7 +107,7 @@
             // 
             // btnQuayLai
             // 
-            btnQuayLai.Location = new Point(23, 289);
+            btnQuayLai.Location = new Point(12, 253);
             btnQuayLai.Name = "btnQuayLai";
             btnQuayLai.Size = new Size(75, 23);
             btnQuayLai.TabIndex = 7;
@@ -119,7 +119,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(616, 334);
+            ClientSize = new Size(616, 304);
             Controls.Add(btnQuayLai);
             Controls.Add(label4);
             Controls.Add(label3);

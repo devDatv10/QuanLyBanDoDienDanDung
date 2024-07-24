@@ -124,9 +124,9 @@
             label7.Font = new Font("Segoe UI", 12F);
             label7.Location = new Point(44, 57);
             label7.Name = "label7";
-            label7.Size = new Size(339, 21);
+            label7.Size = new Size(406, 21);
             label7.TabIndex = 41;
-            label7.Text = "Thêm, Xóa, Sửa tài khoản \"Nhân viên bán hàng\"";
+            label7.Text = "Thêm, Xóa, Sửa thông tin tài khoản \"Nhân viên bán hàng\"";
             // 
             // btnThoat
             // 
@@ -140,11 +140,13 @@
             // 
             // dtgvTaiKhoanNhanVien
             // 
+            dtgvTaiKhoanNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvTaiKhoanNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvTaiKhoanNhanVien.Location = new Point(63, 385);
             dtgvTaiKhoanNhanVien.Name = "dtgvTaiKhoanNhanVien";
             dtgvTaiKhoanNhanVien.Size = new Size(743, 249);
             dtgvTaiKhoanNhanVien.TabIndex = 39;
+            dtgvTaiKhoanNhanVien.CellContentClick += dtgvTaiKhoanNhanVien_CellContentClick;
             // 
             // txtLuong
             // 

@@ -178,6 +178,7 @@
             // 
             // dtgvTaiKhoanQuanLy
             // 
+            dtgvTaiKhoanQuanLy.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvTaiKhoanQuanLy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvTaiKhoanQuanLy.Location = new Point(77, 390);
             dtgvTaiKhoanQuanLy.Name = "dtgvTaiKhoanQuanLy";
@@ -201,9 +202,9 @@
             label7.Font = new Font("Segoe UI", 12F);
             label7.Location = new Point(58, 62);
             label7.Name = "label7";
-            label7.Size = new Size(298, 21);
+            label7.Size = new Size(365, 21);
             label7.TabIndex = 17;
-            label7.Text = "Thêm, Xóa, Sửa tài khoản \"Quản lý Cơ sở\"";
+            label7.Text = "Thêm, Xóa, Sửa thông tin tài khoản \"Quản lý Cơ sở\"";
             // 
             // label8
             // 

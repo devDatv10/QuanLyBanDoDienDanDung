@@ -39,7 +39,7 @@ namespace QuanLyBanDoDienTuDanDung
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
             DialogResult res;
-            res = MessageBox.Show("Bạn muốn thoát đăng xuất khỏi tài khoản Admin", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            res = MessageBox.Show("Bạn muốn thoát đăng xuất khỏi tài khoản Admin?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
                 formChosseLogin formChosseLoginPage = new formChosseLogin();

@@ -55,7 +55,7 @@ namespace QuanLyBanDoDienTuDanDung
             {
                 if (string.IsNullOrWhiteSpace(txtTen.Text) || string.IsNullOrWhiteSpace(txtSoDienThoai.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text) || string.IsNullOrWhiteSpace(txtCaLamViec.Text))
                 {
-                    MessageBox.Show("Thông tin không được để trống. Vui lòng nhập đầy đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Thông tin quản lý cơ sở không được để trống. Vui lòng nhập đầy đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtTen.Focus();
                     return;
                 }
@@ -194,6 +194,16 @@ namespace QuanLyBanDoDienTuDanDung
                 string matKhau = string.IsNullOrWhiteSpace(txtMatKhau.Text) ? currentManagerInfo["PassWord"].ToString() : txtMatKhau.Text;
                 int caLamViec = string.IsNullOrWhiteSpace(txtCaLamViec.Text) ? (int)currentManagerInfo["CaLamViec"] : int.Parse(txtCaLamViec.Text);
                 int luong = string.IsNullOrWhiteSpace(txtLuong.Text) ? (int)currentManagerInfo["Luong"] : int.Parse(txtLuong.Text);
+
+                if (ten == currentManagerInfo["Ten"].ToString() &&
+                    soDienThoai == currentManagerInfo["SoDienThoai"].ToString() &&
+                    matKhau == currentManagerInfo["PassWord"].ToString() &&
+                    caLamViec == (int)currentManagerInfo["CaLamViec"]&&
+                    luong == (int)currentManagerInfo["Luong"])
+                {
+                    MessageBox.Show("Không có thay đổi nào để cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
                 if (!string.IsNullOrWhiteSpace(txtSoDienThoai.Text) && txtSoDienThoai.Text.Length != 10)
                 {

@@ -142,5 +142,43 @@ namespace QuanLyBanDoDienTuDanDung
                 return null;
             }
         }
+
+        public DataRow GetProductInfo(string maHangHoa)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(@"
+            SELECT 
+                MaHangHoa, 
+                TenHangHoa, 
+                MoTa, 
+                ThongSoKyThuat,
+                DonViTinh, 
+                Gia, 
+                HinhAnh
+            FROM HangHoa
+            WHERE MaHangHoa = @MaHangHoa", conn);
+                cmd.Parameters.AddWithValue("@MaHangHoa", maHangHoa);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return dt.Rows[0];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return null;
+            }
+        }
+
     }
 }

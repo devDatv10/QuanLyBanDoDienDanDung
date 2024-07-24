@@ -83,6 +83,7 @@
             btnChonQuanLySanPham.TabIndex = 4;
             btnChonQuanLySanPham.Text = "Chọn";
             btnChonQuanLySanPham.UseVisualStyleBackColor = true;
+            btnChonQuanLySanPham.Click += btnChonQuanLySanPham_Click;
             // 
             // btnChonThongKeDoanhThu
             // 
@@ -101,6 +102,7 @@
             btnDangXuat.TabIndex = 6;
             btnDangXuat.Text = "Đăng xuất";
             btnDangXuat.UseVisualStyleBackColor = true;
+            btnDangXuat.Click += btnDangXuat_Click;
             // 
             // formManagerPage
             // 
