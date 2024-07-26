@@ -139,9 +139,22 @@ namespace QuanLyBanDoDienTuDanDung
                         return;
                     }
 
+                    SqlCommand checkCmd = new SqlCommand("TimKiemMaNhanVienInHoaDon", myDatabase.GetConnection());
+                    checkCmd.CommandType = CommandType.StoredProcedure;
+                    checkCmd.Parameters.AddWithValue("@MaNhanVien", txtMaNhanVien.Text);
+
+                    SqlDataAdapter da = new SqlDataAdapter(checkCmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    if (dt.Rows.Count > 0 && Convert.ToInt32(dt.Rows[0][0]) == 1)
+                    {
+                        MessageBox.Show("Mã nhân viên này đang tồn tại trong bảng HoaDon. Không thể xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     SqlCommand cmd = new SqlCommand("XoaNhanVienBanHang", myDatabase.GetConnection());
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.AddWithValue("@MaNhanVien", txtMaNhanVien.Text);
 
                     cmd.ExecuteNonQuery();
@@ -196,7 +209,7 @@ namespace QuanLyBanDoDienTuDanDung
                 if (ten == currentStaffInfo["Ten"].ToString() &&
                     soDienThoai == currentStaffInfo["SoDienThoai"].ToString() &&
                     matKhau == currentStaffInfo["PassWord"].ToString() &&
-                    caLamViec == (int)currentStaffInfo["CaLamViec"]&&
+                    caLamViec == (int)currentStaffInfo["CaLamViec"] &&
                     luong == (int)currentStaffInfo["Luong"])
                 {
                     MessageBox.Show("Không có thay đổi nào để cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

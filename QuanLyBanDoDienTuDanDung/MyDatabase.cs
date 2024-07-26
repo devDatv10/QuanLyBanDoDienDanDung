@@ -180,5 +180,46 @@ namespace QuanLyBanDoDienTuDanDung
             }
         }
 
+        public DataRow GetBillInfo(string maHoaDon)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(@"
+        SELECT 
+            hd.MaHoaDon,
+            hd.ThoiGianLap AS NgayLap,
+            cn.Ten AS TenNhanVien,
+            hh.TenHangHoa,
+            cthd.SoLuong,
+            hd.ThanhTien
+        FROM 
+            HoaDon hd
+            INNER JOIN ChiTietHoaDon cthd ON hd.MaHoaDon = cthd.MaHoaDon
+            INNER JOIN ConNguoi cn ON hd.MaNhanVien = cn.MaConNguoi
+            INNER JOIN HangHoa hh ON cthd.MaHangHoa = hh.MaHangHoa
+        WHERE 
+            hd.MaHoaDon = @MaHoaDon", conn);
+                cmd.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    return dt.Rows[0];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return null;
+            }
+        }
+
     }
 }

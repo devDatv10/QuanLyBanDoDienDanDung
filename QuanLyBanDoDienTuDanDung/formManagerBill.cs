@@ -39,6 +39,32 @@ namespace QuanLyBanDoDienTuDanDung
         private void formManagerBill_Load(object sender, EventArgs e)
         {
             LoadListProduct();
+            LoadListBill();
+        }
+
+        private void LoadListBill()
+        {
+            try
+            {
+                myDatabase.ConnectToDatabase();
+
+                SqlCommand cmd = new SqlCommand("LayDanhSachHoaDon", myDatabase.GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dtgvDanhSachHoaDon.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                myDatabase.CloseConnection();
+            }
         }
 
         private void LoadListProduct()
@@ -191,12 +217,54 @@ namespace QuanLyBanDoDienTuDanDung
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMaHoaDon.Text))
+            {
+                MessageBox.Show("Vui lòng nhập mã hóa đơn để thực hiện 'Xóa'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMaHoaDon.Focus();
+                return;
+            }
 
-        }
+            DialogResult res;
+            res = MessageBox.Show("Bạn có chắc muốn xóa hóa đơn này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                try
+                {
+                    myDatabase.ConnectToDatabase();
 
-        private void btnSua_Click(object sender, EventArgs e)
-        {
+                    DataRow currentStaffInfo = myDatabase.GetBillInfo(txtMaHoaDon.Text);
+                    if (currentStaffInfo == null)
+                    {
+                        MessageBox.Show("Không tìm thấy hóa đơn với mã bạn cung cấp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
+                    SqlCommand cmd = new SqlCommand("XoaHoaDon ", myDatabase.GetConnection());
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@MaHoaDon", txtMaHoaDon.Text);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Xóa hóa đơn thành công khỏi CSDL.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LoadListBill();
+
+                    txtMaHoaDon.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+                finally
+                {
+                    myDatabase.CloseConnection();
+                }
+            }
+            else
+            {
+                this.Show();
+            }
         }
 
         private void btnXemChiTietHoaDon_Click(object sender, EventArgs e)
@@ -226,6 +294,7 @@ namespace QuanLyBanDoDienTuDanDung
 
                     formBillDetail billDetailForm = new formBillDetail(maHoaDon, ngayLap, tenNhanVien, tenHangHoa, soLuong, thanhTien);
                     billDetailForm.Show();
+                    this.Hide();
                 }
                 else
                 {

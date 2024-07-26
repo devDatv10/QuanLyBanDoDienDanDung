@@ -43,6 +43,7 @@
             btnInHoaDon = new Button();
             label7 = new Label();
             txtNgayLap = new TextBox();
+            label8 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -171,11 +172,21 @@
             txtNgayLap.Size = new Size(160, 23);
             txtNgayLap.TabIndex = 14;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(109, 58);
+            label8.Name = "label8";
+            label8.Size = new Size(317, 15);
+            label8.TabIndex = 15;
+            label8.Text = "* Thực hiện In hóa đơn để cập nhật trang thái của Hóa đơn";
+            // 
             // formBillDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(685, 440);
+            Controls.Add(label8);
             Controls.Add(txtNgayLap);
             Controls.Add(label7);
             Controls.Add(btnInHoaDon);
@@ -214,5 +225,6 @@
         private Button btnInHoaDon;
         private Label label7;
         private TextBox txtNgayLap;
+        private Label label8;
     }
 }

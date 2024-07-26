@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace QuanLyBanDoDienTuDanDung
 {
     public partial class formBillDetail : Form
     {
+        private MyDatabase myDatabase;
         public formBillDetail(string maHoaDon, string ngayLap, string tenNhanVien, string tenHangHoa, int soLuong, int thanhTien)
         {
             InitializeComponent();
+            myDatabase = new MyDatabase();
 
             txtMaHoaDon.Text = maHoaDon;
             txtNgayLap.Text = ngayLap;
@@ -33,7 +36,28 @@ namespace QuanLyBanDoDienTuDanDung
 
         private void btnInHoaDon_Click(object sender, EventArgs e)
         {
+            try
+            {
+                myDatabase.ConnectToDatabase();
 
+                using (SqlCommand cmd = new SqlCommand("CapNhatTrangThaiHoaDon", myDatabase.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaHoaDon", txtMaHoaDon.Text);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Trạng thái hóa đơn đã được cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật trạng thái hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                myDatabase.CloseConnection();
+            }
         }
     }
 }
