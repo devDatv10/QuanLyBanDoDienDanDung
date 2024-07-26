@@ -204,6 +204,7 @@ namespace QuanLyBanDoDienTuDanDung
                 SetDefaultValues();
                 txtGia.Clear();
                 txtThanhTien.Clear();
+                LoadListBill();
             }
             catch (Exception ex)
             {

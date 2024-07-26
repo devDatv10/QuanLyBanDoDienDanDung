@@ -41,5 +41,12 @@ namespace QuanLyBanDoDienTuDanDung
                 this.Show();
             }
         }
+
+        private void btnChonThongKeDoanhThu_Click(object sender, EventArgs e)
+        {
+            formRevenueStatistic formRevenueStatisticPage = new formRevenueStatistic();
+            formRevenueStatisticPage.Show();
+            this.Hide();
+        }
     }
 }

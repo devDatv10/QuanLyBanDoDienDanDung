@@ -93,6 +93,7 @@
             btnChonThongKeDoanhThu.TabIndex = 5;
             btnChonThongKeDoanhThu.Text = "Chọn";
             btnChonThongKeDoanhThu.UseVisualStyleBackColor = true;
+            btnChonThongKeDoanhThu.Click += btnChonThongKeDoanhThu_Click;
             // 
             // btnDangXuat
             // 
