@@ -14,6 +14,8 @@ namespace QuanLyBanDoDienTuDanDung
     public partial class formLoginStaff : Form
     {
         private MyDatabase myDatabase;
+
+        public static string maNhanVienBanHang { get; private set; }
         public formLoginStaff()
         {
             InitializeComponent();
@@ -52,7 +54,7 @@ namespace QuanLyBanDoDienTuDanDung
 
                 myDatabase.ConnectToDatabase();
 
-                String query = @"SELECT tk.*, cn.VaiTro 
+                String query = @"SELECT tk.*, cn.VaiTro
                                  FROM TaiKhoan tk
                                  INNER JOIN ConNguoi cn ON tk.UserName = cn.SoDienThoai
                                  WHERE tk.UserName = @userName AND tk.PassWord = @passWord";
@@ -69,6 +71,8 @@ namespace QuanLyBanDoDienTuDanDung
                 {
                     DataRow row = dtable.Rows[0];
                     int vaiTro = Convert.ToInt32(row["VaiTro"]);
+
+                    maNhanVienBanHang = row["MaConNguoi"].ToString();
 
                     if (vaiTro == 2)
                     {

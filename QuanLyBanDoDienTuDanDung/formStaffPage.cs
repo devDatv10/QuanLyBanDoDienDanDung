@@ -21,5 +21,28 @@ namespace QuanLyBanDoDienTuDanDung
         {
 
         }
+
+        private void btnChonHoaDon_Click(object sender, EventArgs e)
+        {
+            formManagerBill formManagerBillPage = new formManagerBill();
+            formManagerBillPage.Show();
+            this.Hide();
+        }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            DialogResult res;
+            res = MessageBox.Show("Bạn muốn thoát đăng xuất khỏi tài khoản Nhân viên bán hàng?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                formChosseLogin formChosseLoginPage = new formChosseLogin();
+                formChosseLoginPage.Show();
+                this.Hide();
+            }
+            else
+            {
+                this.Show();
+            }
+        }
     }
 }
