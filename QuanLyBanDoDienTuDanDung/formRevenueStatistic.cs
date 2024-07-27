@@ -23,10 +23,10 @@ namespace QuanLyBanDoDienTuDanDung
 
         private void formRevenueStatistic_Load(object sender, EventArgs e)
         {
-            LoadChart();
+            LoadChartRevenueStatistic();
         }
 
-        private void LoadChart()
+        private void LoadChartRevenueStatistic()
         {
             try
             {

@@ -94,6 +94,7 @@
             btnChonThongKeSanPham.TabIndex = 5;
             btnChonThongKeSanPham.Text = "Chọn";
             btnChonThongKeSanPham.UseVisualStyleBackColor = true;
+            btnChonThongKeSanPham.Click += btnChonThongKeSanPham_Click;
             // 
             // btnDangXuat
             // 

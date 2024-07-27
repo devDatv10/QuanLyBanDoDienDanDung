@@ -78,7 +78,7 @@ namespace QuanLyBanDoDienTuDanDung
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenHangHoa.Text) || string.IsNullOrWhiteSpace(txtMoTa.Text) || string.IsNullOrWhiteSpace(txtDonViTinh.Text) || string.IsNullOrWhiteSpace(txtGia.Text) || string.IsNullOrWhiteSpace(txtThongSoKyThuat.Text))
+            if (string.IsNullOrWhiteSpace(txtTenHangHoa.Text) || string.IsNullOrWhiteSpace(txtMoTa.Text) || string.IsNullOrWhiteSpace(txtDonViTinh.Text) || string.IsNullOrWhiteSpace(txtGia.Text) || string.IsNullOrWhiteSpace(txtThongSoKyThuat.Text) || ptbHinhAnh.Image == null)
             {
                 MessageBox.Show("Thông tin hàng hóa không được để trống. Vui lòng nhập đầy đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

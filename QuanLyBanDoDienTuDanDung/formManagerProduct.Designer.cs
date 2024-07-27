@@ -294,7 +294,7 @@
             Controls.Add(label3);
             Controls.Add(label1);
             Name = "formManagerProduct";
-            Text = "formManagerProduct";
+            Text = "Trang quản lý Hàng hóa";
             Load += formManagerProduct_Load;
             ((System.ComponentModel.ISupportInitialize)dtgvThongTinHangHoa).EndInit();
             ((System.ComponentModel.ISupportInitialize)ptbHinhAnh).EndInit();
