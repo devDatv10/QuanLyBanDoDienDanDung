@@ -95,6 +95,13 @@ namespace QuanLyBanDoDienTuDanDung
                 int gia = int.Parse(txtGia.Text);
                 byte[] hinhAnh = null;
 
+                if (gia <= 0)
+                {
+                    MessageBox.Show("Giá phải là một số dương hợp lệ và lớn hơn 0.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtGia.Focus();
+                    return;
+                }
+
                 if (ptbHinhAnh.Image != null)
                 {
                     using (MemoryStream ms = new MemoryStream())
